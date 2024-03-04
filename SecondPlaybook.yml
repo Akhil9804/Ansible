@@ -1,0 +1,37 @@
+---
+- name: This playbook is used to copy file from master to slave server
+  hosts: all
+  become: yes
+  tasks:
+    - name: File and directory transfer one
+      debug:
+        msg: Beginning the file transfer
+
+    - name: Copy the file
+      copy:
+        src: /home/ec2-user/Devops/Ansible/FirstPlaybook.yml
+        dest: /home/ec2-user/
+
+    - name: File and directory transfer two
+      debug:
+        msg: File transfer is completed
+
+    - name: File and directory transfer three
+      debug:
+        msg: Directory transfer begin
+
+    - name: Copy the directory
+      copy:
+        src: /home/ec2-user/Devops/
+        dest: /home/ec2-user/
+        directory_mode: yes
+
+    - name: Change permission of directory
+      file:
+        dest: /home/ec2-user/Ansible
+        owner: ec2-user
+        mode: 0755
+
+    - name: File and directory transfer four
+      debug:
+        msg: Directory transfer completed

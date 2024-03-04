@@ -1,0 +1,22 @@
+---
+- name: Archive the file
+  hosts: all
+  become: true
+  tasks:
+    - name: Archive the file on the slave server
+      archive:
+        path: /home/ec2-user/FirstPlaybook.yml
+        dest: /home/ec2-user/FirstPlaybook.yml.zip
+        format: zip
+
+    - name: Archive the folder in the slave server
+      archive:
+        path: /home/ec2-user/Ansible/
+        dest: /home/ec2-user/Ansible.tar
+        format: tar
+
+    - name: Unarchive the file in the slave server
+      Unarchive:
+        src: ThirdPlaybook.yml.zip
+        dest: /home/ec2-user/
+        remote_src: yes

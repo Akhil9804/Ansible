@@ -1,0 +1,17 @@
+---
+- name: This playbook is used to Install git and ansible application into amazon linux
+  hosts: WEBSERVER
+  become: true
+  tasks:
+    - name: Print text on screen before installation
+      debug:
+        msg: Installation begin
+    - name: Install Packages
+      yum:
+        name:
+          - git
+          - ansible
+        state: present
+    - name: Print text on screen after installation
+      debug:
+        msg: Installation completed

@@ -1,0 +1,15 @@
+---
+- name: remove git from slave server
+  hosts: WEBSERVER
+  become: yes
+  tasks:
+    - name: Debug one
+      debug:
+        msg: Beginning the process
+    - name: remove git
+      yum:
+        name: git
+        state: absent
+    - name: Debug two
+      debug:
+        msg: Ending the process
