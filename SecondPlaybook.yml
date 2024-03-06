@@ -28,10 +28,27 @@
 
     - name: Change permission of directory
       file:
-        dest: /home/ec2-user/Ansible
+        path: /home/ec2-user/Ansible
         owner: ec2-user
         mode: 0755
 
     - name: File and directory transfer four
       debug:
         msg: Directory transfer completed
+
+    - name: Copy Multiple file one
+      debug:
+        msg: Copy multiple files begin
+
+    - name: Copy multiple files
+      copy:
+        src: "{{ item }}"
+        dest: /home/ec2-user/
+      with_items:
+        - /home/ec2-user/Devops/GitCheatsheet
+        - /home/ec2-user/Devops/AnsibleCheatsheet
+        - /home/ec2-user/Devops/SecondPlaybook.yml
+
+    - name: Copy Multiple file two
+      debug:
+        msg: Copy multiple files end
